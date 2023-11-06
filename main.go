@@ -27,6 +27,9 @@ func handler(db *sql.DB, req *http.Request) {
 }
 
 func unzip(f string) {
+	if true {
+
+	}
 	r, _ := zip.OpenReader(f)
 	for _, f := range r.File {
 		p, _ := filepath.Abs(f.Name)
