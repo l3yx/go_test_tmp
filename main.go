@@ -36,4 +36,7 @@ func unzip(f string) {
 		// BAD: This could overwrite any file on the file system
 		ioutil.WriteFile(p, []byte("present"), 0666)
 	}
+	if false {
+
+	}
 }
