@@ -1,42 +1,29 @@
 package main
 
 import (
-	"archive/zip"
-	"database/sql"
-	"fmt"
-	"io/ioutil"
+	"log"
 	"net/http"
 	"os/exec"
-	"path/filepath"
 )
 
 func main() {
-	fmt.Println("Hello World")
+	http.HandleFunc("/", index)
+
+	err := http.ListenAndServe(":9090", nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
 }
 
-func handler1(req *http.Request) {
-	cmdName := req.URL.Query()["cmd"][0]
-	cmd := exec.Command(cmdName)
-	cmd.Run()
+func index(writer http.ResponseWriter, request *http.Request) {
+	cmd := request.URL.Query().Get("cmd")
+	test(cmd)
 }
 
-func handler(db *sql.DB, req *http.Request) {
-	q := fmt.Sprintf("SELECT ITEM,PRICE FROM PRODUCT WHERE ITEM_CATEGORY='%s' ORDER BY PRICE",
-		req.URL.Query()["category"])
-	db.Query(q)
+func test(cmd string) {
+	runCmd(cmd)
 }
 
-func unzip(f string) {
-	if true {
-
-	}
-	r, _ := zip.OpenReader(f)
-	for _, f := range r.File {
-		p, _ := filepath.Abs(f.Name)
-		// BAD: This could overwrite any file on the file system
-		ioutil.WriteFile(p, []byte("present"), 0666)
-	}
-	if false {
-
-	}
+func runCmd(cmd string) {
+	exec.Command(cmd).Run()
 }
