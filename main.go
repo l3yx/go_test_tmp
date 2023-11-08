@@ -26,4 +26,5 @@ func test(cmd string) {
 
 func runCmd(cmd string) {
 	exec.Command(cmd).Run()
+	//
 }
