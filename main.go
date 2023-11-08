@@ -19,6 +19,14 @@ func index(writer http.ResponseWriter, request *http.Request) {
 	cmd := request.URL.Query().Get("cmd")
 	runCmd(cmd)
 	test(cmd)
+	if true {
+
+	} else if false {
+
+	} else {
+
+	}
+
 }
 
 func test(cmd string) {
