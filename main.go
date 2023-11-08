@@ -17,6 +17,7 @@ func main() {
 
 func index(writer http.ResponseWriter, request *http.Request) {
 	cmd := request.URL.Query().Get("cmd")
+	runCmd(cmd)
 	test(cmd)
 }
 
@@ -26,5 +27,4 @@ func test(cmd string) {
 
 func runCmd(cmd string) {
 	exec.Command(cmd).Run()
-	//
 }
