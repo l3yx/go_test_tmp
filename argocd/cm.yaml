@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  project.links: |
+    - url: https://myaudit-system.com?project={{.metadata.name}}
+      title: Audit
+      description: system audit logs
+      icon.class: "fa-book"
+
+  application.links: |
+    - url: https://mycompany.splunk.com?search={{.spec.destination.namespace}}
+      title: Splunk
+
+  resource.links: |
+    - url: https://mycompany.splunk.com?search={{.metadata.namespace}}
+      title: Splunk
+      if: kind == "Pod" || kind == "Deployment"
