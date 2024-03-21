@@ -7,6 +7,9 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
+  statusbadge.enabled: "true"
+  users.anonymous.enabled: "true"
+  help.chatUrl: "https://mycorp.slack.com/argo-cd"
   help.chatText: "111111Chat now!"
   project.links: |
     - url: https://myaudit-system.com?project={{.metadata.name}}
